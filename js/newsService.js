@@ -24,7 +24,6 @@ class NewsService {
 	 * @param searchNews - keyword for which the request is made
 	 */
 	getEverythingNews(callback, searchNews) {
-		'https://newsapi.org/v2/everything?q=bitcoin&apiKey=API_KEY'
 		http.get(`${ this.apiUrl }/everything?q=${ searchNews }}&apiKey=${ this.apiKey }`, callback);
 	}
 }

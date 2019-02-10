@@ -3,6 +3,10 @@ class NewsUI {
 		this.newsContainer = document.querySelector('.news-wrap .row');
 	}
 
+	/**
+	 * @description Feature adds news to markup
+	 * @param {object} news - object with full information about the news
+	 */
 	addNews(news) {
 		const template = NewsUI.newsTemplate(news);
 
@@ -10,6 +14,9 @@ class NewsUI {
 		this.newsContainer.appendChild(template);
 	}
 
+	/**
+	 * @description The function clears the container from the news
+	 */
 	clearContainer() {
 		let first = this.newsContainer.firstElementChild;
 
@@ -19,6 +26,11 @@ class NewsUI {
 		}
 	}
 
+	/**
+	 * @description The function creates a markup with the filled data and returns it
+	 * @param {Object} news - object with full information about the news
+	 * @return {string} - returns markup
+	 */
 	// static newsTemplate(news) {
 	// 	return `
 	// 		<div class="col s12 m6">
@@ -37,6 +49,11 @@ class NewsUI {
 	// 		</div>`;
 	// }
 
+	/**
+	 * @description - The function creates a markup with the filled data and returns it
+	 * @param {Object} news - object with full information about the news
+	 * @return {HTMLDivElement} - returns markup
+	 */
 	static newsTemplate(news) {
 		let container = document.createElement('div');
 		let holder = document.createElement('div');
@@ -51,8 +68,8 @@ class NewsUI {
 		container.classList.add('col');
 		container.classList.add('s12');
 		container.classList.add('m6');
-		holder.classList.add('card')
-		holder.classList.add('hoverable')
+		holder.classList.add('card');
+		holder.classList.add('hoverable');
 		imgHolder.classList.add('card-image');
 		cardContentHolder.classList.add('card-content');
 		cardTitle.classList.add('card-title');
@@ -62,7 +79,7 @@ class NewsUI {
 			img.setAttribute('src', news.urlToImage);
 			img.setAttribute('alt', 'image description');
 
-			imgHolder.appendChild(img)
+			imgHolder.appendChild(img);
 			holder.appendChild(imgHolder);
 		}
 
@@ -72,7 +89,7 @@ class NewsUI {
 		}
 
 		if (news.description) {
-			cardContent.innerHTML =  news.description;
+			cardContent.innerHTML = news.description;
 			cardContentHolder.appendChild(cardContent);
 		}
 

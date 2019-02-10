@@ -8,7 +8,10 @@ const countrySelect = form['country'];
 const categorySelect = form['category'];
 const search = form['search'];
 
-function onSelectChange(e) {
+/**
+ * @description The function tracks changes in the select and sends a request to the server
+ */
+function onSelectChange() {
 	const country = countrySelect.value;
 	const category = categorySelect.value;
 
@@ -23,17 +26,21 @@ function onSelectChange(e) {
 	}, category, country);
 }
 
-function onSearchChange(e) {
+/**
+ * @description The function tracks changes in the search field, and sends a request to the server
+ */
+function onSearchChange() {
 	const searchNews = search.value;
 
 	newsService.getEverythingNews((response) => {
 		const { articles } = response;
+		newsUI.clearContainer();
 
 		if (!articles.length) {
-			alertUI.addAler('По данному запросу нет новостей')
+			search.value = '';
+			return alertUI.addAler('По данному запросу нет новостей');
 		}
 
-		newsUI.clearContainer();
 		articles.forEach((news) => newsUI.addNews(news));
 	}, searchNews);
 }
